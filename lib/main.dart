@@ -57,7 +57,7 @@ class _AppState extends State<App> {
                       decoration: InputDecoration(
                         labelText: "Email Address",
                         border: OutlineInputBorder(),
-                        suffix: Text('@domain.name'),
+                        suffix: Text('user@domain.name'),
                         prefixIcon: Icon(Icons.email),
                       ),
                       onSaved: (String value) {
@@ -110,7 +110,7 @@ class _AppState extends State<App> {
                               formkey.currentState.save();
                               print(
                                   'email address: $username, password: $password');
-                              formkey.currentState.reset();
+                              // formkey.currentState.reset();
 
                               FocusScope.of(context).requestFocus(FocusNode());
                             }
@@ -128,6 +128,10 @@ class _AppState extends State<App> {
                                 backgroundColor:
                                     MaterialStateProperty.all(Colors.red)),
                             onPressed: () {
+                              setState(() {
+                                username = '';
+                                password = '';
+                              });
                               formkey.currentState.reset();
                             },
                             child: Text(
