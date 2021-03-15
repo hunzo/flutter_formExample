@@ -7,7 +7,7 @@ class App extends StatefulWidget {
   _AppState createState() => _AppState();
 }
 
-const kTextFields = TextStyle(fontSize: 16, color: Colors.blue);
+const kTextFields = TextStyle(fontSize: 16, color: Colors.black);
 const kButton = TextStyle(fontSize: 18, color: Colors.white);
 
 class _AppState extends State<App> {
@@ -49,7 +49,7 @@ class _AppState extends State<App> {
                       style: TextStyle(color: Colors.grey[800], fontSize: 30),
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 30,
                     ),
                     TextFormField(
                       style: kTextFields,
@@ -62,7 +62,9 @@ class _AppState extends State<App> {
                       ),
                       onSaved: (String value) {
                         print(value);
-                        username = value;
+                        setState(() {
+                          username = value;
+                        });
                       },
                       validator: (String value) {
                         if (!validateEmail(value)) {
@@ -73,7 +75,7 @@ class _AppState extends State<App> {
                       },
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     TextFormField(
                       style: kTextFields,
@@ -85,7 +87,9 @@ class _AppState extends State<App> {
                       ),
                       onSaved: (String value) {
                         print(value);
-                        password = value;
+                        setState(() {
+                          password = value;
+                        });
                       },
                       validator: (String value) {
                         if (value.length < 8) {
@@ -95,7 +99,7 @@ class _AppState extends State<App> {
                       },
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -107,6 +111,8 @@ class _AppState extends State<App> {
                               print(
                                   'email address: $username, password: $password');
                               formkey.currentState.reset();
+
+                              FocusScope.of(context).requestFocus(FocusNode());
                             }
                           },
                           child: Text(
@@ -115,7 +121,7 @@ class _AppState extends State<App> {
                           ),
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 50,
                         ),
                         ElevatedButton(
                             style: ButtonStyle(
@@ -130,6 +136,10 @@ class _AppState extends State<App> {
                             ))
                       ],
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text("username: $username\npassword: $password")
                   ],
                 ),
               ),
